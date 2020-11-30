@@ -63,7 +63,7 @@ export default function App() {
     fetch('/articles', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify({
         "course": "demo",
@@ -76,7 +76,7 @@ export default function App() {
         fetch(`/articles/${data.id}/summaries`, {
           method: 'POST',
           headers: {
-            'Content-Type': 'application/json',
+            'Content-Type': 'application/json'
           },
           body: JSON.stringify({
             ratio: compression,
