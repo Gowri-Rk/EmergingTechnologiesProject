@@ -12,7 +12,7 @@ CORS(app)
 article_service = ArticleService()
 summary_service = SummarizationService()
 
-#Validate
+#Validate the changes
 def validate_article(request):
     if 'course' not in request or not request['course']:
         abort(make_response(jsonify(message="course must be supplied"), 400))
