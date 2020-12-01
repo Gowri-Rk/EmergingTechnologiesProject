@@ -23,7 +23,8 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2),
   },
   textArea: {
-    width: "100%"
+    width: "100%",
+    marginBottom: 20,
   },
   middle: {
     maxWidth: "fit-content"
@@ -71,10 +72,10 @@ export default function App() {
         content,
         name: "temp"
       })
-    }
-    ).then(response => response.json())
-      .then(data => {
-        fetch(`/articles/${data.id}/summaries`, {
+    })
+      .then(response => response.json())
+      .then(article => {
+        fetch(`/articles/${article.id}/summaries`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -83,22 +84,22 @@ export default function App() {
             ratio: compression,
             name: "temp"
           })
-        }
-        ).then(response => response.json())
-          .then(data => {
-            setLoading(false);
-            setSummary(data.content);
-
+        }).then(response => response.json())
+          .then(summary => {
             //Fetch the word cloud for the lecture
-            fetch(`/articles/eda/${data.id}`, {
+            fetch(`/articles/eda/${article.id}`, {
               method: 'GET',
               headers: {
-                'Content-Type': 'application/json',
-              }).then(response => response.json())
-                .then(data => {
-                  setLoading(false);
-                  setImage('data:image/jpg;base64,' + data);
-                })
+                'Content-Type': 'application/json'
+              }
+            }).then(response => response.blob())
+              .then(images => {
+                setLoading(false);
+                let image = URL.createObjectURL(images)
+                setImage(image);
+              })
+              setLoading(false);
+              setSummary(summary.content);
           })
           .catch((error) => {
             setLoading(false);
@@ -110,6 +111,7 @@ export default function App() {
         console.error('Error:', error);
       });
   }
+
   return (
     <div className="App">
       <AppBar color="primary" position="static">
@@ -133,37 +135,35 @@ export default function App() {
         </Grid>
         <Grid key="middle" xs={2} className={classes.middle} item>
           <Grid key="inner" className={classes.inner} justify="center" container>
-          <FormControl className={classes.formControl}>
-            <InputLabel id="demo-simple-select-label">Compression</InputLabel>
-            <Select
-              labelId="demo-controlled-open-select-label"
-              id="demo-controlled-open-select"
-              open={open}
-              onClose={handleClose}
-              onOpen={handleOpen}
-              value={compression}
-              onChange={handleChange}
-              className={classes.dropDown}
-            >
-              <MenuItem value={0.1}>0.1</MenuItem>
-              <MenuItem value={0.2}>0.2</MenuItem>
-              <MenuItem value={0.3}>0.3</MenuItem>
-            </Select>
-          </FormControl>
-          <Button variant="contained" color="primary" disabled={loading} onClick={fetchSummary}>
-            {loading ? "Generating..." : "> Summarize >"}
-          </Button>
+            <FormControl className={classes.formControl}>
+              <InputLabel id="demo-simple-select-label">Compression</InputLabel>
+              <Select
+                labelId="demo-controlled-open-select-label"
+                id="demo-controlled-open-select"
+                open={open}
+                onClose={handleClose}
+                onOpen={handleOpen}
+                value={compression}
+                onChange={handleChange}
+                className={classes.dropDown}
+              >
+                <MenuItem value={0.1}>0.1</MenuItem>
+                <MenuItem value={0.2}>0.2</MenuItem>
+                <MenuItem value={0.3}>0.3</MenuItem>
+              </Select>
+            </FormControl>
+            <Button variant="contained" color="primary" disabled={loading} onClick={fetchSummary}>
+              {loading ? "Generating..." : "> Summarize >"}
+            </Button>
           </Grid>
         </Grid>
-        <Grid key="right" xs={5} item>
-          <img src={image} onChange={(e) => {
-            setImage('data:image/jpg;base64,' + e.target.value)
-          }} aria-label="right" rowsMin={40} />
-        </Grid>
+
         <Grid key="right" xs={5} item>
           <TextareaAutosize value={summary} onChange={(e) => {
             setSummary(e.target.value)
-          }} className={classes.textArea} aria-label="right textarea" rowsMin={40} placeholder="Summary will be generated here" />
+          }} className={classes.textArea} aria-label="right textarea" rowsMin={15} placeholder="Summary will be generated here" />
+          <img src={image} width={550} height= {370} aria-label="image" alt="wordcloud" />
+
         </Grid>
       </Grid>
     </div>
