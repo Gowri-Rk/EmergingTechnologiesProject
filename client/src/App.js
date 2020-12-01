@@ -45,6 +45,7 @@ export default function App() {
   const [loading, setLoading] = useState(false);
   const [compression, setCompression] = useState("0.2");
   const [open, setOpen] = React.useState(false);
+  const [image, setImage] = useState("");
 
   const handleChange = (event) => {
     setCompression(event.target.value);
@@ -87,6 +88,17 @@ export default function App() {
           .then(data => {
             setLoading(false);
             setSummary(data.content);
+
+            //Fetch the word cloud for the lecture
+            fetch(`/articles/eda/${data.id}`, {
+              method: 'GET',
+              headers: {
+                'Content-Type': 'application/json',
+              }).then(response => response.json())
+                .then(data => {
+                  setLoading(false);
+                  setImage('data:image/jpg;base64,' + data);
+                })
           })
           .catch((error) => {
             setLoading(false);
@@ -142,6 +154,11 @@ export default function App() {
             {loading ? "Generating..." : "> Summarize >"}
           </Button>
           </Grid>
+        </Grid>
+        <Grid key="right" xs={5} item>
+          <img src={image} onChange={(e) => {
+            setImage('data:image/jpg;base64,' + e.target.value)
+          }} aria-label="right" rowsMin={40} />
         </Grid>
         <Grid key="right" xs={5} item>
           <TextareaAutosize value={summary} onChange={(e) => {
