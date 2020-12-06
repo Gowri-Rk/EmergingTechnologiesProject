@@ -17,3 +17,4 @@ dependencies:
   - sklearn
   - gensim
   - matplotlib
+  - newspaper3k

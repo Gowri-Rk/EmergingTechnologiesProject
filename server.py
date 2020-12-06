@@ -4,7 +4,7 @@ from flask_cors import CORS
 from summarizer.ArticleService import ArticleService
 from summarizer.SummarizationService import SummarizationService
 from summarizer.UdacityParser import UdacityParser
-
+from newspaper import fulltext
 
 app = Flask(__name__)
 CORS(app)
@@ -21,12 +21,24 @@ def validate_article(request):
     if 'name' not in request or not request['name']:
         abort(make_response(jsonify(message="name must be supplied"), 400))
 
+def validate_url(request):
+    if 'course' not in request or not request['course']:
+        abort(make_response(jsonify(message="course must be supplied"), 400))
+    if 'url' not in request or not request['url']:
+        abort(make_response(jsonify(message="url must be supplied"), 400))
+    if 'name' not in request or not request['name']:
+        abort(make_response(jsonify(message="name must be supplied"), 400))
 
 @app.route('/articles', methods=['POST'])
 def create_article():
     validate_article(request.json)
     return jsonify(article_service.create_article(request.json))
 
+
+@app.route('/articles/url', methods=['POST'])
+def create_article_from_url():
+    validate_url(request.json)
+    return jsonify(article_service.create_article_from_url(request.json))
 
 @app.route('/articles', methods=['GET'])
 def get_articles():
@@ -122,11 +134,12 @@ def unknown_error(e):
 def get_eda(articleid):
     if articleid is None:
         abort(make_response(jsonify(message="you must supply a article id"), 400))
-    print("article"+ articleid)
     result_bytes = article_service.get_EDA(articleid)
     if result_bytes:
         return send_file(result_bytes,attachment_filename='wordcloudplot.png',mimetype='image/png')
     abort(make_response(jsonify(message="article not found"), 404))
+
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000,debug=True)

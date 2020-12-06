@@ -10,6 +10,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
+import TextField from '@material-ui/core/TextField';
 
 // UI related changes
 const useStyles = makeStyles((theme) => ({
@@ -43,12 +44,13 @@ const useStyles = makeStyles((theme) => ({
 export default function App() {
   const classes = useStyles();
   const [content, setContent] = useState("");
+  const [url, setUrl] = useState("");
   const [summary, setSummary] = useState("");
   const [loading, setLoading] = useState(false);
   const [compression, setCompression] = useState("0.2");
   const [open, setOpen] = React.useState(false);
   const [image, setImage] = useState("");
-
+  const [keywords, setKeywords] = useState([]);
   const handleChange = (event) => {
     setCompression(event.target.value);
   };
@@ -63,19 +65,20 @@ export default function App() {
 
   const fetchSummary = () => {
     setLoading(true);
-    fetch('/articles', {
+    const reqBody = url ? {"course": "demo", url, name: "temp"} : {"course": "demo", content, name: "temp"};
+    const path = url ? '/articles/url' : '/articles';
+    fetch(path, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({
-        "course": "demo",
-        content,
-        name: "temp"
-      })
+      body: JSON.stringify(reqBody)
     })
       .then(response => response.json())
       .then(article => {
+        if (article.keywords && article.keywords.length > 0) {
+          setKeywords(article.keywords)
+        }
         fetch(`/articles/${article.id}/summaries`, {
           method: 'POST',
           headers: {
@@ -130,6 +133,9 @@ export default function App() {
         alignItems="center"
         justify="center">
         <Grid key="left" xs={5} item>
+          <TextField id="url" label="URL" onChange={(e) => {
+            setUrl(e.target.value)
+          }} className={classes.textArea} placeholder="Link to url" value={url}/>
           <TextareaAutosize value={content} onChange={(e) => {
             setContent(e.target.value)
           }} className={classes.textArea} aria-label="left textarea" rowsMin={40} placeholder="Paste your content here" />
@@ -160,6 +166,7 @@ export default function App() {
         </Grid>
 
         <Grid key="right" xs={5} item>
+          {keywords && keywords.length > 0 ? <div style={{wordBreak: "break-all", width: "100%", margin: "10px"}}>Keywords : {keywords.toString()}</div> : null }
           <TextareaAutosize value={summary} onChange={(e) => {
             setSummary(e.target.value)
           }} className={classes.textArea} aria-label="right textarea" rowsMin={15} placeholder="Summary will be generated here" />

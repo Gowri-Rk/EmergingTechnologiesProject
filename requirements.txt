@@ -12,3 +12,5 @@ sklearn
 gensim
 matplotlib
 wordcloud
+newspaper3k
+requests
