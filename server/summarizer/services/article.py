@@ -13,7 +13,7 @@ class ArticleService(object):
     def __init__(self, memory_only=False):
         self.memory_only: bool = memory_only
 
-    def youtube_convert(self, youtube_link): #video_id is youtube video id
+    def youtube_convert(self, youtube_link: str): #video_id is youtube video id
         download_text = YouTubeTranscriptApi.get_transcript(youtube_link[32:])
         final_text = ""
         for x in range(len(download_text)):
