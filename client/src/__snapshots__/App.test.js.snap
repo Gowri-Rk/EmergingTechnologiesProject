@@ -1,0 +1,127 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders learn react link 1`] = `
+<div
+  className="App"
+>
+  <WithStyles(ForwardRef(AppBar))
+    color="primary"
+    position="static"
+  >
+    <WithStyles(ForwardRef(Toolbar))>
+      <WithStyles(ForwardRef(Typography))
+        color="inherit"
+        variant="h4"
+      >
+        BERT Content Summarizer
+      </WithStyles(ForwardRef(Typography))>
+    </WithStyles(ForwardRef(Toolbar))>
+  </WithStyles(ForwardRef(AppBar))>
+  <WithStyles(ForwardRef(Grid))
+    alignItems="center"
+    className="makeStyles-root-1"
+    container={true}
+    justify="center"
+    spacing={2}
+  >
+    <WithStyles(ForwardRef(Grid))
+      item={true}
+      key="left"
+      xs={5}
+    >
+      <WithStyles(ForwardRef(TextField))
+        className="makeStyles-textArea-3"
+        id="url"
+        label="URL"
+        onChange={[Function]}
+        placeholder="Link to url"
+        value=""
+      />
+      <ForwardRef(TextareaAutosize)
+        aria-label="left textarea"
+        className="makeStyles-textArea-3"
+        onChange={[Function]}
+        placeholder="Paste your content here"
+        rowsMin={40}
+        value=""
+      />
+    </WithStyles(ForwardRef(Grid))>
+    <WithStyles(ForwardRef(Grid))
+      className="makeStyles-middle-4"
+      item={true}
+      key="middle"
+      xs={2}
+    >
+      <WithStyles(ForwardRef(Grid))
+        className="makeStyles-inner-5"
+        container={true}
+        justify="center"
+        key="inner"
+      >
+        <WithStyles(ForwardRef(FormControl))>
+          <WithStyles(ForwardRef(InputLabel))
+            id="demo-simple-select-label"
+          >
+            Compression
+          </WithStyles(ForwardRef(InputLabel))>
+          <WithStyles(ForwardRef(Select))
+            className="makeStyles-dropDown-6"
+            id="demo-controlled-open-select"
+            labelId="demo-controlled-open-select-label"
+            onChange={[Function]}
+            onClose={[Function]}
+            onOpen={[Function]}
+            open={false}
+            value="0.2"
+          >
+            <WithStyles(ForwardRef(MenuItem))
+              value={0.1}
+            >
+              0.1
+            </WithStyles(ForwardRef(MenuItem))>
+            <WithStyles(ForwardRef(MenuItem))
+              value={0.2}
+            >
+              0.2
+            </WithStyles(ForwardRef(MenuItem))>
+            <WithStyles(ForwardRef(MenuItem))
+              value={0.3}
+            >
+              0.3
+            </WithStyles(ForwardRef(MenuItem))>
+          </WithStyles(ForwardRef(Select))>
+        </WithStyles(ForwardRef(FormControl))>
+        <WithStyles(ForwardRef(Button))
+          color="primary"
+          disabled={false}
+          onClick={[Function]}
+          variant="contained"
+        >
+          &gt; Summarize &gt;
+        </WithStyles(ForwardRef(Button))>
+      </WithStyles(ForwardRef(Grid))>
+    </WithStyles(ForwardRef(Grid))>
+    <WithStyles(ForwardRef(Grid))
+      item={true}
+      key="right"
+      xs={5}
+    >
+      <ForwardRef(TextareaAutosize)
+        aria-label="right textarea"
+        className="makeStyles-textArea-3"
+        onChange={[Function]}
+        placeholder="Summary will be generated here"
+        rowsMin={15}
+        value=""
+      />
+      <img
+        alt="wordcloud"
+        aria-label="image"
+        height={370}
+        src=""
+        width={550}
+      />
+    </WithStyles(ForwardRef(Grid))>
+  </WithStyles(ForwardRef(Grid))>
+</div>
+`;
