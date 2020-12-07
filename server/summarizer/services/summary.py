@@ -1,8 +1,8 @@
-from summarizer.tables import Summarization, Engine
+from summarizer.db.tables import Summarization, Engine
 from typing import List, Dict
-from summarizer.article_summarizer import SingleModelProcessor
+from summarizer.model_helpers.summarizer import SingleModelProcessor
 from nltk import tokenize
-from summarizer.ArticleService import ArticleService
+from summarizer.services.article import ArticleService
 
 
 class SummarizationService(object):

@@ -18,11 +18,11 @@ RUN apt-get update && \
 
 RUN mkdir -p /opt/service
 RUN mkdir -p /opt/service/summarizer
-COPY summarizer /opt/service/summarizer
-COPY server.py /opt/service
-COPY requirements.txt /opt/service
+COPY server/summarizer /opt/service/summarizer
+COPY server/run.py /opt/service
+COPY server/requirements.txt /opt/service
 WORKDIR /opt/service
 
 RUN pip3 install -r requirements.txt
 
-CMD /bin/bash -c "python3 server.py"
+CMD /bin/bash -c "python3 run.py"

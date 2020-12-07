@@ -8,7 +8,7 @@ from sklearn.mixture import GaussianMixture
 from sklearn.decomposition import PCA
 from gensim.summarization.summarizer import summarize
 from sklearn.cluster import AffinityPropagation
-from summarizer.BertParent import BertParent
+from summarizer.model.bert_parent import BertParent
 from typing import List
 
 

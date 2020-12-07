@@ -1,4 +1,4 @@
-from summarizer.tables import Lecture, Engine
+from summarizer.db.tables import Lecture, Engine
 from typing import List, Dict
 from wordcloud import WordCloud, STOPWORDS
 import io

@@ -1,9 +1,9 @@
 from flask import Flask, send_file
 from flask import request, jsonify, abort, make_response
 from flask_cors import CORS
-from summarizer.ArticleService import ArticleService
-from summarizer.SummarizationService import SummarizationService
-from summarizer.UdacityParser import UdacityParser
+from summarizer.services.article import ArticleService
+from summarizer.services.summary import SummarizationService
+from summarizer.model_helpers.u_parser import UdacityParser
 from newspaper import fulltext
 
 app = Flask(__name__)

@@ -1,5 +1,5 @@
 from annoy import AnnoyIndex
-from summarizer.BertParent import BertParent
+from summarizer.model.bert_parent import BertParent
 import numpy as np
 
 
