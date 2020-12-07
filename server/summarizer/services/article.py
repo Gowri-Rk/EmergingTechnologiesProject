@@ -39,9 +39,14 @@ class ArticleService(object):
 
     def create_article_from_url(self, request_body: Dict[str, str]) -> Dict[str, str]:
         session = Engine.get_instance(self.memory_only).Session()
-        if 'youtube' in request_body['url']:
-            content = youtube_convert(request_body['url'])
-            article = content      
+        if 'youtube' in request_body['url']:                      
+            download_url = request_body['url']
+            download_text = YouTubeTranscriptApi.get_transcript(download_url[32:])
+            final_text = ""
+            for x in range(len(download_text)):
+                final_text += download_text[x]['text'] + ". " 
+            content = final_text     
+            article = content
         else:
             content = fulltext(requests.get(request_body['url']).text)
             article = Article(request_body['url'])
