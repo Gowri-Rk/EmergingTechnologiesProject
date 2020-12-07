@@ -4,6 +4,7 @@ from wordcloud import WordCloud, STOPWORDS
 import io
 import matplotlib.pyplot as plt
 from newspaper import fulltext, Article
+from youtube_transcript_api import YouTubeTranscriptApi
 
 import requests
 
@@ -12,11 +13,17 @@ class ArticleService(object):
     def __init__(self, memory_only=False):
         self.memory_only: bool = memory_only
 
-    def create_article_from_url(self, request_body: Dict[str, str]) -> Dict[str, str]:
+    def youtube_convert(self, youtube_link): #video_id is youtube video id
+        download_text = YouTubeTranscriptApi.get_transcript(youtube_link[32:])
+        final_text = ""
+        for x in range(len(download_text)):
+            final_text += download_text[x]['text'] + ". "
+        return final_text
+
+    def create_article_from_youtube(self, request_body: Dict[str, str]) -> Dict[str, str]:
         session = Engine.get_instance(self.memory_only).Session()
-        content = fulltext(requests.get(request_body['url']).text)
-        article = Article(request_body['url'])
-        article.download()
+        content = youtube_convert(request_body['url'])
+        article = content
         article.parse()
         article.nlp()
         
@@ -30,6 +37,27 @@ class ArticleService(object):
         session.commit()
         return {"id": lecture.id, "keywords": article.keywords}
 
+    def create_article_from_url(self, request_body: Dict[str, str]) -> Dict[str, str]:
+        session = Engine.get_instance(self.memory_only).Session()
+        if 'youtube' in request_body['url']:
+            content = youtube_convert(request_body['url'])
+            article = content      
+        else:
+            content = fulltext(requests.get(request_body['url']).text)
+            article = Article(request_body['url'])
+            article.download()
+        article.parse()
+        article.nlp()
+        
+        lecture = Lecture(
+            name=request_body['name'],
+            course=request_body['course'],
+            content=content
+        )
+        session.add(lecture)
+        session.flush()
+        session.commit()
+        return {"id": lecture.id, "keywords": article.keywords}
 
     def create_article(self, request_body: Dict[str, str]) -> Dict[str, str]:
         session = Engine.get_instance(self.memory_only).Session()
