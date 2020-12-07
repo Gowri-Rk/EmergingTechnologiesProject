@@ -13,7 +13,7 @@ make run
 
 ## Launch the UI Interface
 
-Start the front end service and launch tha apploication using
+Start the front end service and launch tha application using
 ```bash
 make client-run
 ```
