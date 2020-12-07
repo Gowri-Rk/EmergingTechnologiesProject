@@ -1,0 +1,7 @@
+spacy
+nltk
+pytextrank
+gensim
+trasnformers
+torch
+rouge
