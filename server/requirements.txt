@@ -14,3 +14,4 @@ matplotlib
 wordcloud
 newspaper3k
 requests
+youtube_transcript_api
