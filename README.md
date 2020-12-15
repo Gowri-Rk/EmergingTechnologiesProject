@@ -17,3 +17,7 @@ Start the front end service and launch tha application using
 ```bash
 make client-run
 ```
+
+## References
+Miller, D., “Leveraging BERT for Extractive Text Summarization on Lectures”, <i>arXiv e-prints</i>, 2019.
+arxiv.org/abs/1906.04165
