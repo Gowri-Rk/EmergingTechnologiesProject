@@ -18,6 +18,9 @@ Start the front end service and launch tha application using
 make client-run
 ```
 
+![alt text](https://github.com/Gowri-Rk/EmergingTechnologiesProject/blob/main/Images/learningrate.png?raw=true)
+
+
 ## References
 Miller, D., “Leveraging BERT for Extractive Text Summarization on Lectures”, <i>arXiv e-prints</i>, 2019.
 arxiv.org/abs/1906.04165
