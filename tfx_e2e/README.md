@@ -1,26 +1,6 @@
-# content-summarizer
+Note: Restart runtime and rerun colab after resolving dependencies
 
-This project utilizes the BERT model to perform extractive text summarization on article transcripts. The contents of 
-this project include a RESTful API to serve these summaries.
-
-Paper: https://arxiv.org/abs/1906.04165
-
-## Running the service locally
-First, docker is required to run the service locally. To start the service, run the command:
-```bash
-make run
-```
-
-## Launch the UI Interface
-
-Start the front end service and launch tha application using
-```bash
-make client-run
-```
-## Tensorboard results for fine tuned BERT model for learning rate and xent
-
-<img src="https://github.com/Gowri-Rk/EmergingTechnologiesProject/blob/main/Images/learningrate.png" width=400>
-<img src="https://github.com/Gowri-Rk/EmergingTechnologiesProject/blob/main/Images/xent.png" width=400>
+https://drive.google.com/drive/folders/17QBNdYvuIpuJfrUl0iTQ_sY9OU9Yhh-j?usp=sharing
 
 ## TFX artifacts
 
