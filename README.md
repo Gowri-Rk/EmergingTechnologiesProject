@@ -19,8 +19,8 @@ make client-run
 ```
 ## Tensorboard results for fine tuned BERT model for learning rate and xent
 
-![alt text](https://github.com/Gowri-Rk/EmergingTechnologiesProject/blob/main/Images/learningrate.png)
-![alt text](https://github.com/Gowri-Rk/EmergingTechnologiesProject/blob/main/Images/xent.png)
+<img src="https://github.com/Gowri-Rk/EmergingTechnologiesProject/blob/main/Images/learningrate.png">
+<img src="https://github.com/Gowri-Rk/EmergingTechnologiesProject/blob/main/Images/xent.png">
 
 
 ## References
