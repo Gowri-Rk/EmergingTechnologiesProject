@@ -17,8 +17,10 @@ Start the front end service and launch tha application using
 ```bash
 make client-run
 ```
+## Tensorboard results for fine tuned BERT model for learning rate and xent
 
-![alt text](https://github.com/Gowri-Rk/EmergingTechnologiesProject/blob/main/Images/learningrate.png?raw=true)
+![alt text](https://github.com/Gowri-Rk/EmergingTechnologiesProject/blob/main/Images/learningrate.png)
+![alt text](https://github.com/Gowri-Rk/EmergingTechnologiesProject/blob/main/Images/xent.png)
 
 
 ## References
