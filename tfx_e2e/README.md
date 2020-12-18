@@ -15,7 +15,3 @@ https://drive.google.com/drive/folders/17QBNdYvuIpuJfrUl0iTQ_sY9OU9Yhh-j?usp=sha
 <img src="https://github.com/Gowri-Rk/EmergingTechnologiesProject/blob/main/Images/stats_.PNG" width=400>
 <img src="https://github.com/Gowri-Rk/EmergingTechnologiesProject/blob/main/Images/trainer.PNG" width=400>
 <img src="https://github.com/Gowri-Rk/EmergingTechnologiesProject/blob/main/Images/transform.PNG" width=400>
-
-## References
-Miller, D., “Leveraging BERT for Extractive Text Summarization on Lectures”, <i>arXiv e-prints</i>, 2019.
-arxiv.org/abs/1906.04165
