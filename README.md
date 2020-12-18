@@ -3,7 +3,34 @@
 This project utilizes the BERT model to perform extractive text summarization on article transcripts. The contents of 
 this project include a RESTful API to serve these summaries.
 
-Paper: https://arxiv.org/abs/1906.04165
+Reference Paper: https://arxiv.org/abs/1906.04165
+
+<img src="https://github.com/Gowri-Rk/EmergingTechnologiesProject/blob/main/Images/title.png" width=100%>
+
+## Architecture
+
+<img src="https://github.com/Gowri-Rk/EmergingTechnologiesProject/blob/main/Images/project_architecture.png" width=100%>
+
+<img src="https://github.com/Gowri-Rk/EmergingTechnologiesProject/blob/main/Images/bert_architecture.png" width=100%>
+
+<img src="https://github.com/Gowri-Rk/EmergingTechnologiesProject/blob/main/Images/bert_input.png" width=100%>
+
+## Process
+<img src="https://github.com/Gowri-Rk/EmergingTechnologiesProject/blob/main/Images/process_flow.png" width=100%>
+
+## Steps
+
+<img src="https://github.com/Gowri-Rk/EmergingTechnologiesProject/blob/main/Images/steps_article.png" width=100%>
+
+<img src="https://github.com/Gowri-Rk/EmergingTechnologiesProject/blob/main/Images/steps_create_summary.png" width=100%>
+
+<img src="https://github.com/Gowri-Rk/EmergingTechnologiesProject/blob/main/Images/steps_get_summary.png" width=100%>
+
+## ROUGH Score
+
+<img src="https://github.com/Gowri-Rk/EmergingTechnologiesProject/blob/main/Images/rough_score_mean.png" width=100%>
+
+<img src="https://github.com/Gowri-Rk/EmergingTechnologiesProject/blob/main/Images/rough_score_density.png" width=100%>
 
 ## Running the service locally
 First, docker is required to run the service locally. To start the service, run the command:
@@ -17,6 +44,7 @@ Start the front end service and launch tha application using
 ```bash
 make client-run
 ```
+
 ## Tensorboard results for fine tuned BERT model for learning rate and xent
 
 ### Learning Rate
